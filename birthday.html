@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday </title>
+    <style>
+        /* body {
+            margin: 0;
+            font-family: "Comic Sans MS", cursive;
+            background: linear-gradient(to right, #8d1d6d, #93b0e1);
+            overflow: hidden;
+            text-align: center;
+        } */
+
+
+
+        body {
+            margin: 0;
+            font-family: "Comic Sans MS", cursive;
+            background: url('https://www.transparenttextures.com/patterns/hearts.png'),
+                linear-gradient(to right, #e97ccc, #952fc7);
+            background-attachment: fixed;
+            background-size: cover;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 2rem;
+            color: white;
+            text-shadow: 2px 2px #ff69b4;
+            font-size: 2.5rem;
+        }
+
+        p {
+            color: white;
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 1rem auto;
+        }
+
+        .balloon {
+            width: 50px;
+            height: 70px;
+            background: #ff6f61;
+            border-radius: 50% 50% 50% 50%;
+            position: absolute;
+            bottom: -100px;
+            animation: float 10s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+            }
+
+            100% {
+                transform: translateY(-120vh) translateX(50px);
+            }
+        }
+
+        .button {
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background: white;
+            color: #ff1493;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 0 10px #fff;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background: #ff1493;
+            color: white;
+        }
+
+        #quoteBox,
+        #giftBox {
+            display: none;
+        }
+
+        #quoteBox {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+
+
+
+
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        #gameModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #giftBox {
+            display: none;
+            font-size: 4rem;
+            animation: bounce 1.5s infinite;
+            cursor: pointer;
+        }
+
+
+        #gameCanvas {
+            background: #fff8f0;
+            border: 2px solid pink;
+        }
+
+        .closeBtn {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: #ff1493;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        #gameOverMsg {
+            display: none;
+            font-size: 2rem;
+            color: yellow;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<!-- 
+<body>
+
+    <h1>🎉 Happy Birthday, twitty! 🎂</h1>
+    <p>Hope your day is filled with sparkles, cake, and infinite smiles! 🌈🧁✨</p>
+    <img src="c41db48f-00fd-442d-a2a4-b3024ff706e4.jpg" alt="Birthday Girl Twitty" style="max-width: 80%; border-radius: 20px; margin-top: 1rem; box-shadow: 0 0 20px pink;" />
+
+
+    <button class="button" onclick="showSurprise()">Click for Surprise 🎁</button>
+
+    <div id="quoteBox">
+        <p>✨ ""Just a girl with glitter in her heart and magic in her smile." 💫👑"</p>
+        <p>"Too glam to give a damn… especially on your birthday!"</p>
+    </div>
+
+    <div id="giftBox" onclick="openGame()">🎁</div>
+
+
+
+    <div id="gameModal" style="display: none; justify-content: center; align-items: center; flex-direction: column;">
+        <canvas id="gameCanvas" width="300" height="400" style="max-width: 90vw; height: auto;"></canvas>
+        <div id="gameOverMsg">🎮 Game Over! You missed 10 coins 😢</div>
+        <button class="closeBtn" onclick="closeGame()">Close</button>
+    </div>
+ -->
+<body>
+
+    <h1>🎉 Happy Birthday, Twitty! 🎂</h1>
+<p>Hope your day is filled with sparkles, cake, and infinite smiles! 🌈🧁✨</p>
+
+<!-- 🎀 Centered image and button -->
+<div style="display: flex; flex-direction: column; align-items: center; margin-top: 1rem;">
+    <img src="birthdaygirl.jpg" alt="Birthday Girl Twitty"
+        style="width: 150px; border-radius: 20px; box-shadow: 0 0 20px pink;" />
+
+    <button class="button" onclick="showSurprise()" style="margin-top: 1rem;">
+        Click for Surprise 🎁
+    </button>
+</div>
+
+    <div id="quoteBox">
+        <p>✨ "Just a girl with glitter in her heart and magic in her smile." 💫👑</p>
+        <p>"Too glam to give a damn… especially on your birthday!"</p>
+    </div>
+
+    <div id="giftBox" onclick="openGame()">🎁</div>
+
+    <!-- 🎮 Mini Game Modal -->
+    <div id="gameModal" style="display: none; justify-content: center; align-items: center; flex-direction: column;">
+        <canvas id="gameCanvas" width="300" height="400" style="max-width: 90vw; height: auto;"></canvas>
+        <div id="gameOverMsg">🎮 Game Over! You missed 10 coins 😢</div>
+        <button class="closeBtn" onclick="closeGame()">Close</button>
+    </div>
+
+</body>
+</html>
+
+
+
+    <script>
+        // Balloons
+        for (let i = 0; i < 25; i++) {
+            const balloon = document.createElement("div");
+            balloon.classList.add("balloon");
+            balloon.style.left = Math.random() * 100 + "vw";
+            balloon.style.background = "#" + Math.floor(Math.random() * 16777215).toString(16);
+            balloon.style.animationDuration = (6 + Math.random() * 6) + "s";
+            document.body.appendChild(balloon);
+        }
+
+        // Surprise button
+        // function showSurprise() {
+        //   document.getElementById("quoteBox").style.display = "block";
+        //   document.getElementById("giftBox").style.display = "block";
+        // }
+
+
+        function showSurprise() {
+            document.getElementById("quoteBox").style.display = "block";
+            document.getElementById("giftBox").style.display = "block";
+            document.getElementById("surpriseDrop").style.display = "none"; // Hide the drop after click
+        }
+
+
+        // Game
+        let x = 150, y = 370;
+        let coins = [], score = 0, missed = 0;
+        let gameInterval;
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+
+        function openGame() {
+            document.getElementById("gameModal").style.display = "flex";
+            startGame();
+        }
+
+        function closeGame() {
+            clearInterval(gameInterval);
+            document.getElementById("gameModal").style.display = "none";
+            document.getElementById("gameOverMsg").style.display = "none";
+        }
+
+        function startGame() {
+            x = 150; score = 0; missed = 0; coins = [];
+            document.getElementById("gameOverMsg").style.display = "none";
+            document.addEventListener("mousemove", movePlayer);
+            gameInterval = setInterval(gameLoop, 50);
+        }
+
+        function drawPlayer() {
+            ctx.fillStyle = "#ff69b4";
+            ctx.fillRect(x - 15, y, 30, 10);
+        }
+
+        function drawCoins() {
+            ctx.fillStyle = "gold";
+            for (let coin of coins) {
+                ctx.beginPath();
+                ctx.arc(coin.x, coin.y, 8, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function updateCoins() {
+            for (let coin of coins) {
+                coin.y += 4;
+            }
+
+            coins = coins.filter(coin => {
+                if (coin.y > 400) {
+                    missed++;
+                    if (missed >= 10) endGame();
+                    return false;
+                }
+                if (coin.y > y && Math.abs(coin.x - x) < 20) {
+                    score++;
+                    return false;
+                }
+                return true;
+            });
+
+            if (Math.random() < 0.05) {
+                coins.push({ x: Math.random() * 300, y: 0 });
+            }
+        }
+
+        function drawScore() {
+            ctx.fillStyle = "black";
+            ctx.font = "16px Arial";
+            ctx.fillText("Score: " + score, 10, 20);
+            ctx.fillText("Missed: " + missed, 200, 20);
+        }
+
+        function gameLoop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawPlayer();
+            drawCoins();
+            updateCoins();
+            drawScore();
+        }
+
+       function movePlayer(e) {
+    const rect = canvas.getBoundingClientRect();
+    let newX = e.clientX - rect.left;
+
+    // Constrain within canvas boundaries
+    if (newX < 15) newX = 15;                     // Left limit
+    if (newX > canvas.width - 15) newX = canvas.width - 15; // Right limit
+
+    x = newX;
+}
+
+
+        function endGame() {
+            clearInterval(gameInterval);
+            document.getElementById("gameOverMsg").style.display = "block";
+        }
+    </script>
+</body>
+
+</html>
